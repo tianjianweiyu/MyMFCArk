@@ -13,6 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="驱动操作">
+      <UniqueIdentifier>{963a2b42-cc55-4e4b-86ad-8df6550cb242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="通讯类">
+      <UniqueIdentifier>{0112f89c-9dd5-4909-8762-d47edd3e2f30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="进程操作">
+      <UniqueIdentifier>{f193fef9-87ba-45cb-a8c6-f185d274f8ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="文件操作">
+      <UniqueIdentifier>{34da2023-a01f-4c40-9f0a-e005d4d4a268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="注册表操作">
+      <UniqueIdentifier>{ae7ca87e-dc26-4b2a-89f3-7d668e23251d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IDT">
+      <UniqueIdentifier>{a0383814-7176-406b-b10f-b7789e79e96e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GDT">
+      <UniqueIdentifier>{f182978d-6248-43a1-aebd-b6b3775fb943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SSDT">
+      <UniqueIdentifier>{f9f6eb18-3778-471b-8f7f-a1b9144abb44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyMFCArk.h">
@@ -33,6 +57,39 @@
     <ClInclude Include="pch.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CDriverDlg.h">
+      <Filter>驱动操作</Filter>
+    </ClInclude>
+    <ClInclude Include="CService.h">
+      <Filter>通讯类</Filter>
+    </ClInclude>
+    <ClInclude Include="CProcessDlg.h">
+      <Filter>进程操作</Filter>
+    </ClInclude>
+    <ClInclude Include="CModuleDlg.h">
+      <Filter>进程操作</Filter>
+    </ClInclude>
+    <ClInclude Include="CThreadDlg.h">
+      <Filter>进程操作</Filter>
+    </ClInclude>
+    <ClInclude Include="CFileDlg.h">
+      <Filter>文件操作</Filter>
+    </ClInclude>
+    <ClInclude Include="CRegisterDlg.h">
+      <Filter>注册表操作</Filter>
+    </ClInclude>
+    <ClInclude Include="CAddKeyDlg.h">
+      <Filter>注册表操作</Filter>
+    </ClInclude>
+    <ClInclude Include="CIdtDlg.h">
+      <Filter>IDT</Filter>
+    </ClInclude>
+    <ClInclude Include="CGdtDlg.h">
+      <Filter>GDT</Filter>
+    </ClInclude>
+    <ClInclude Include="CSsdtDlg.h">
+      <Filter>SSDT</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyMFCArk.cpp">
@@ -43,6 +100,39 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CDriverDlg.cpp">
+      <Filter>驱动操作</Filter>
+    </ClCompile>
+    <ClCompile Include="CService.cpp">
+      <Filter>通讯类</Filter>
+    </ClCompile>
+    <ClCompile Include="CProcessDlg.cpp">
+      <Filter>进程操作</Filter>
+    </ClCompile>
+    <ClCompile Include="CModuleDlg.cpp">
+      <Filter>进程操作</Filter>
+    </ClCompile>
+    <ClCompile Include="CThreadDlg.cpp">
+      <Filter>进程操作</Filter>
+    </ClCompile>
+    <ClCompile Include="CFileDlg.cpp">
+      <Filter>文件操作</Filter>
+    </ClCompile>
+    <ClCompile Include="CRegisterDlg.cpp">
+      <Filter>注册表操作</Filter>
+    </ClCompile>
+    <ClCompile Include="CAddKeyDlg.cpp">
+      <Filter>注册表操作</Filter>
+    </ClCompile>
+    <ClCompile Include="CIdtDlg.cpp">
+      <Filter>IDT</Filter>
+    </ClCompile>
+    <ClCompile Include="CGdtDlg.cpp">
+      <Filter>GDT</Filter>
+    </ClCompile>
+    <ClCompile Include="CSsdtDlg.cpp">
+      <Filter>SSDT</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

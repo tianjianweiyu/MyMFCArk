@@ -32,6 +32,7 @@
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
+    <SpectreMitigation>false</SpectreMitigation>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -187,6 +188,17 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAddKeyDlg.h" />
+    <ClInclude Include="CDriverDlg.h" />
+    <ClInclude Include="CFileDlg.h" />
+    <ClInclude Include="CGdtDlg.h" />
+    <ClInclude Include="CIdtDlg.h" />
+    <ClInclude Include="CModuleDlg.h" />
+    <ClInclude Include="CProcessDlg.h" />
+    <ClInclude Include="CRegisterDlg.h" />
+    <ClInclude Include="CService.h" />
+    <ClInclude Include="CSsdtDlg.h" />
+    <ClInclude Include="CThreadDlg.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MyMFCArk.h" />
     <ClInclude Include="MyMFCArkDlg.h" />
@@ -195,6 +207,17 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAddKeyDlg.cpp" />
+    <ClCompile Include="CDriverDlg.cpp" />
+    <ClCompile Include="CFileDlg.cpp" />
+    <ClCompile Include="CGdtDlg.cpp" />
+    <ClCompile Include="CIdtDlg.cpp" />
+    <ClCompile Include="CModuleDlg.cpp" />
+    <ClCompile Include="CProcessDlg.cpp" />
+    <ClCompile Include="CRegisterDlg.cpp" />
+    <ClCompile Include="CService.cpp" />
+    <ClCompile Include="CSsdtDlg.cpp" />
+    <ClCompile Include="CThreadDlg.cpp" />
     <ClCompile Include="MyMFCArk.cpp" />
     <ClCompile Include="MyMFCArkDlg.cpp" />
     <ClCompile Include="pch.cpp">

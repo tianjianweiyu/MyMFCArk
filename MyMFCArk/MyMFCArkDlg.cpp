@@ -7,6 +7,14 @@
 #include "MyMFCArk.h"
 #include "MyMFCArkDlg.h"
 #include "afxdialogex.h"
+#include "CDriverDlg.h"
+#include "CProcessDlg.h"
+#include "CService.h"
+#include "CFileDlg.h"
+#include "CRegisterDlg.h"
+#include "CIdtDlg.h"
+#include "CGdtDlg.h"
+#include "CSsdtDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -56,15 +64,23 @@ CMyMFCArkDlg::CMyMFCArkDlg(CWnd* pParent /*=nullptr*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
+CMyMFCArkDlg::~CMyMFCArkDlg()
+{
+	CService* myArkService = CService::GetService();
+	myArkService->CloseMyService();
+}
+
 void CMyMFCArkDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_TAB1, m_tab);
 }
 
 BEGIN_MESSAGE_MAP(CMyMFCArkDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB1, &CMyMFCArkDlg::OnTcnSelchangeTab1)
 END_MESSAGE_MAP()
 
 
@@ -100,6 +116,27 @@ BOOL CMyMFCArkDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
+
+	// 获取程序自身的PID
+	ULONG PID = _getpid();
+
+	CService* myArkService = CService::GetService();
+	//发送自身PID到0环
+	myArkService->SendSelfPid(&PID);
+
+
+	//给Tab控件添加选项卡
+	AddTabWnd(L"驱动信息", new CDriverDlg, IDD_DRIVER);
+	AddTabWnd(L"进程信息", new CProcessDlg, IDD_PROCESS);
+	AddTabWnd(L"文件信息", new CFileDlg, IDD_FILE);
+	AddTabWnd(L"注册表信息", new CRegisterDlg, IDD_REGISTER);
+	AddTabWnd(L"IDT", new CIdtDlg, IDD_IDT);
+	AddTabWnd(L"GDT", new CGdtDlg, IDD_GDT);
+	AddTabWnd(L"SSDT", new CSsdtDlg, IDD_SSDT);
+
+	//将选项卡对应对话框显示出来
+	m_tab.SetCurSel(0);
+	OnTcnSelchangeTab1(0, 0);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -153,3 +190,43 @@ HCURSOR CMyMFCArkDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+void CMyMFCArkDlg::AddTabWnd(const CString& title, CDialogEx* pSubWnd, UINT uId)
+{
+	//GetItemCount()获取当前选项卡控件中的选项卡的数量
+	//选项卡是从零开始索引的
+	//在选项卡尾端插入新的选项卡
+	m_tab.InsertItem(m_tab.GetItemCount(), title);
+	//创建子窗口，设置父窗口
+	pSubWnd->Create(uId, &m_tab);
+
+	CRect rect;
+	//获取选项卡控件客户区的大小
+	m_tab.GetClientRect(rect);
+	//根据控件客户区大小设置对应对话框的位置
+	rect.DeflateRect(1, 23, 1, 1);
+	//更改选项卡对应的对话框大小
+	//并将其移动到当前选项卡控件客户区
+	pSubWnd->MoveWindow(rect);
+
+
+	//将要添加的对话框从尾部放入对话框数组
+	m_tabSubWnd.push_back(pSubWnd);
+	//将新插入的选项卡变为选中状态
+	m_tab.SetCurSel(m_tabSubWnd.size() - 1);
+}
+
+void CMyMFCArkDlg::OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	// TODO: 在此添加控件通知处理程序代码
+
+	//循环将选项卡每项对应的对话框都隐藏
+	for (auto&i : m_tabSubWnd)
+	{
+		i->ShowWindow(SW_HIDE);
+	}
+
+	//将当前选项卡选项对应的对话框显示出来
+	m_tabSubWnd[m_tab.GetCurSel()]->ShowWindow(SW_SHOW);
+	//将当前选项卡选项对应的对话框内容更新
+	m_tabSubWnd[m_tab.GetCurSel()]->UpdateWindow();
+}
